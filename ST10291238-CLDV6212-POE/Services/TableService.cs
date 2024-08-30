@@ -9,7 +9,7 @@ namespace ST10291238_CLDV6212_POE.Services
         private readonly TableClient _tableClient;
         public TableService(IConfiguration configuration)
         {
-            var connectionString = configuration["AzureStorage: ConnectionString"];
+            var connectionString = configuration["AzureStorage:ConnectionString"];
             var serviceClient = new TableServiceClient(connectionString);
             _tableClient = serviceClient.GetTableClient("CustomerProfiles");
             _tableClient.CreateIfNotExists();

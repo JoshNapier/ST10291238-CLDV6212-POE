@@ -10,7 +10,7 @@ namespace ST10291238_CLDV6212_POE.Services
         private readonly BlobServiceClient _blobServiceClient;
         public BlobService(IConfiguration configuration)
         {
-            _blobServiceClient = new BlobServiceClient(configuration["AzureStorage: ConnectionString"]);
+            _blobServiceClient = new BlobServiceClient(configuration["AzureStorage:ConnectionString"]);
         }
 
         public async Task UploadBlobAsync(string containerName, string blobname, Stream content)

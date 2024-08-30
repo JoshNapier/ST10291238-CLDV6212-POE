@@ -1,8 +1,91 @@
-﻿@{
+﻿@model ST10291238_CLDV6212_POE.Models.CustomerProfile
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    Upload Product Image
+                </div>
+                <div class="card-body">
+                    <form asp-action="UploadImage" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="profileImage">Choose Image:</label>
+                            <input type="file" class="form-control-file" name="file" id="profileImage" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload Image</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    Add Customer Profile
+                </div>
+                <div class="card-body">
+                    <form asp-action="AddCustomerProfile" method="post">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" name="FirstName" id="firstName" placeholder="First Name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" name="LastName" id="lastName" placeholder="Last Name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="Email" id="email" placeholder="Email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="text" class="form-control" name="PhoneNumber" id="phoneNumber" placeholder="Phone Number" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    Process Order
+                </div>
+                <div class="card-body">
+                    <form asp-action="ProcessOrder" method="post">
+                        <div class="form-group">
+                            <label for="orderId">Order ID</label>
+                            <input type="text" class="form-control" name="orderId" id="orderId" placeholder="Order ID" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Process Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    Upload Contract
+                </div>
+                <div class="card-body">
+                    <form asp-action="UploadContract" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="contractFile">Choose File:</label>
+                            <input type="file" class="form-control-file" name="file" id="contractFile" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload Contract</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -23,16 +23,17 @@ namespace ST10291238_CLDV6212_POE.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(new CustomerProfile());
         }
 
         [HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile file)
         {
-            if (file != null)
+            if (file != null && file.Length > 0)
             {
                 using var stream = file.OpenReadStream();
                 await _blobService.UploadBlobAsync("product-images", file.FileName, stream);
+                ViewBag.Message = "Image uploaded successfully";
             }
             return RedirectToAction("Index");
         }
@@ -43,6 +44,7 @@ namespace ST10291238_CLDV6212_POE.Controllers
             if (ModelState.IsValid)
             {
                 await _tableService.AddEntityAsync(profile);
+                ViewBag.Message = "Customer profile added successfully";
             }
             return RedirectToAction("Index");
         }
@@ -50,17 +52,22 @@ namespace ST10291238_CLDV6212_POE.Controllers
         [HttpPost]
         public async Task<IActionResult> ProcessOrder(string orderId)
         {
-            await _queueService.SendMessageAsync("order-processing", $"Processing order {orderId}");
+            if (!string.IsNullOrEmpty(orderId))
+            {
+                await _queueService.SendMessageAsync("order-processing", $"Processing order {orderId}");
+                ViewBag.Message = "Order processed successfully";
+            }
             return RedirectToAction("Index");
         }
 
         [HttpPost]
         public async Task<IActionResult> UploadContract(IFormFile file)
         {
-            if (file != null)
+            if (file != null && file.Length > 0)
             {
                 using var stream = file.OpenReadStream();
                 await _fileService.UploadFileAsync("contracts-logs", file.FileName, stream);
+                ViewBag.Message = "Contract uploaded successfully";
             }
             return RedirectToAction("Index");
         }

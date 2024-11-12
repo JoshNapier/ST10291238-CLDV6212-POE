@@ -1,4 +1,4 @@
-using ST10291238_CLDV6212_POE.Services;
+
 
 namespace ST10291238_CLDV6212_POE
 {
@@ -10,11 +10,6 @@ namespace ST10291238_CLDV6212_POE
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
-            builder.Services.AddSingleton<BlobService>();
-            builder.Services.AddSingleton<TableService>();
-            builder.Services.AddSingleton<QueueService>();
-            builder.Services.AddSingleton<FileService>();
 
             var app = builder.Build();
 
